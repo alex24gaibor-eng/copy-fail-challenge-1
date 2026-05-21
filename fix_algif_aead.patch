@@ -2,16 +2,15 @@ diff --git a/crypto/algif_aead.c b/crypto/algif_aead.c
 index 1234567..89abcdef 100644
 --- a/crypto/algif_aead.c
 +++ b/crypto/algif_aead.c
-@@ -1,5 +1,15 @@
--/* Vulnerable in-place code processing */
-+/* Fixed: Force strict TX SGL separation to isolate page cache */
-+struct sk_buff *skb;
+@@ -1,5 +1,13 @@
++/* Strict TX SGL separation for in-place mitigation */
 +struct scatterlist *tx_sgl;
 +struct scatterlist *separate_sgl;
 +
-+if (ctx->more) {
-+	/* Implement isolation of TX SGL for splice operations */
+ if (ctx->more) {
+-	/* Processing input data */
++	/* Isolate page cache memory mappings */
 +	separate_sgl = kmalloc(sizeof(struct scatterlist) * MAX_SGL, GFP_KERNEL);
 +	sg_init_table(separate_sgl, MAX_SGL);
 +	process_crypto_operation(separate_sgl);
-+}
+ }
