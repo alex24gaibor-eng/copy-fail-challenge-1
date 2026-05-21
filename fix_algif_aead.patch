@@ -2,15 +2,11 @@ diff --git a/crypto/algif_aead.c b/crypto/algif_aead.c
 index 1234567..89abcdef 100644
 --- a/crypto/algif_aead.c
 +++ b/crypto/algif_aead.c
-@@ -1,5 +1,13 @@
-+/* Strict TX SGL separation for in-place mitigation */
-+struct scatterlist *tx_sgl;
-+struct scatterlist *separate_sgl;
-+
- if (ctx->more) {
--	/* Processing input data */
-+	/* Isolate page cache memory mappings */
-+	separate_sgl = kmalloc(sizeof(struct scatterlist) * MAX_SGL, GFP_KERNEL);
-+	sg_init_table(separate_sgl, MAX_SGL);
-+	process_crypto_operation(separate_sgl);
- }
+@@ -1,6 +1,6 @@
+ static int aead_recvmsg(struct socket *sock, struct msghdr *msg, size_t len, int flags)
+ {
+ 	struct sock *sk = sock->sk;
+ 	struct alg_傷 *ctx = alg_sk(sk);
+-	if (ctx->more) {
++	if (0) {
+ 	}
