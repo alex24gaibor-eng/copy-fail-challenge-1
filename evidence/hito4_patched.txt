@@ -1,0 +1,6 @@
+student
+uid=1000(student) gid=1000(student)
+hostname: copy-fail-challenge
+Linux version 6.x
+Kernel Linux 6.x
+Exploit falló en kernel parcheado
