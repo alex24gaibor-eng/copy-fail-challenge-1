@@ -4,10 +4,10 @@ index 1234567..89abcdef 100644
 +++ b/crypto/algif_aead.c
 @@ -1,5 +1,11 @@
  // Parche de seguridad para CVE-2026-31431
- // Aislamiento de TX SGL para operaciones in-place
+ // Force strict TX SGL isolation for in-place operations
 +
 +if (ctx->more) {
-+    // Usar TX SGL separado para evitar corromper el page cache
++    // Fix: Implement separate TX SGL structure to isolate page cache
 +    struct scatterlist *separate_sgl = get_separate_sgl(ctx);
 +    process_crypto_operation(separate_sgl);
 +}
