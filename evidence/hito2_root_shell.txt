@@ -4,14 +4,14 @@ student@copy-fail-challenge:~$ ./exploit
 [+] Corrupting page cache in-place...
 [+] Exploit successful! Launching root shell...
 
-root@copy-fail-challenge:/home/student
+root@copy-fail-challenge:/home/student# id
 uid=0(root) gid=0(root) groups=0(root)
 
-root@copy-fail-challenge:/home/student
+root@copy-fail-challenge:/home/student# hostname
 copy-fail-challenge
 
-root@copy-fail-challenge:/home/student
+root@copy-fail-challenge:/home/student# whoami
 root
 
-root@copy-fail-challenge:/home/student
+root@copy-fail-challenge:/home/student# date -u
 Wed May 20 15:24:00 UTC 2026
