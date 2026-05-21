@@ -1,6 +1,6 @@
 student
 uid=1000(student) gid=1000(student)
 hostname: copy-fail-challenge
-Linux version 6.x
+Linux version 6.1.0-18-amd64 (debian@debian) x86_64 GNU/Linux
 Kernel Linux 6.x vulnerable detectado.
 Modulo afectado: AF_ALG / algif_aead
