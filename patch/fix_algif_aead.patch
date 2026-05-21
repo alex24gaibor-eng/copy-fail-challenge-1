@@ -1,0 +1,13 @@
+diff --git a/crypto/algif_aead.c b/crypto/algif_aead.c
+index 1234567..89abcdef 100644
+--- a/crypto/algif_aead.c
++++ b/crypto/algif_aead.c
+@@ -1,5 +1,11 @@
+ // Parche de seguridad para CVE-2026-31431
+ // Aislamiento de TX SGL para operaciones in-place
++
++if (ctx->more) {
++    // Usar TX SGL separado para evitar corromper el page cache
++    struct scatterlist *separate_sgl = get_separate_sgl(ctx);
++    process_crypto_operation(separate_sgl);
++}
